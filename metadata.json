@@ -1,0 +1,8 @@
+{
+  "name": "Enaam Ali Osman | Documentary Photographer",
+  "description": "Portfolio and visual storytelling platform for documentary photographer and trainer Enaam Ali Osman, showcasing humanitarian, community, documentary, and workshop projects.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
