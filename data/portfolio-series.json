@@ -1,0 +1,157 @@
+[
+  {
+    "id": "series-humanitarian-care",
+    "number": "01",
+    "category": "humanitarian",
+    "tags": ["humanitarian", "community"],
+    "titleAr": "الإغاثة الإنسانية والنبض الميداني",
+    "titleEn": "Field Relief & Humanitarian Care",
+    "subtitleAr": "توثيق شجاعة الصمود والمبادرات الإغاثية الميدانية في المجتمعات المتأثرة",
+    "subtitleEn": "Documenting frontline resilience, mutual aid, and emergency relief operations across affected communities",
+    "locationAr": "السودان — مراكز الإغاثة ودعم النازحين",
+    "locationEn": "Sudan — Frontline Relief & IDP Support Hubs",
+    "date": "2024 - 2025",
+    "folder": "images/هذة الصور اضفها الى ركن انساني  وركن المجتمعي",
+    "images": [
+      { "file": "img 0.jpg", "isHero": true, "captionAr": "حضور ميداني واستجابة إنسانية عاجلة", "captionEn": "Frontline Presence & Urgent Humanitarian Response" },
+      { "file": "img 1.jpg", "captionAr": "مستودعات الإغاثة وتوزيع المساعدات الأساسية", "captionEn": "Relief Warehousing & Essential Supplies Distribution" },
+      { "file": "img 2.jpg", "captionAr": "نظرات الصمود وتفاصيل الحياة اليومية", "captionEn": "Eyes of Resilience & Unbroken Daily Life" },
+      { "file": "img 3.jpg", "captionAr": "التكافل والتضامن بين أفراد المجتمع المحلي", "captionEn": "Community Solidarity & Grassroots Support Networks" },
+      { "file": "img 4.jpg", "captionAr": "الأيدي الممدودة بالعطاء ومشاركة الأمل", "captionEn": "Outstretched Hands Sharing Dignity & Hope" },
+      { "file": "img 5.jpg", "captionAr": "تنظيم القوافل وتأمين الاحتياجات الحيوية", "captionEn": "Convoy Coordination Securing Vital Family Supplies" },
+      { "file": "img 6.jpg", "captionAr": "تفاني المتطوعين في الخطوط الأمامية", "captionEn": "Volunteer Dedication & Service on the Frontline" },
+      { "file": "img 7.jpg", "captionAr": "بسمة طفل تعيد كتابة ملامح الغد", "captionEn": "A Child's Smile Reshaping the Promise of Tomorrow" }
+    ]
+  },
+  {
+    "id": "series-community-empowerment",
+    "number": "02",
+    "category": "community",
+    "tags": ["community", "humanitarian"],
+    "titleAr": "التماسك والتنمية المجتمعية المستدامة",
+    "titleEn": "Community Cohesion & Sustainable Empowerment",
+    "subtitleAr": "مشاريع التمكين المحلي وإشراك الشباب والمرأة في إحياء الأمل",
+    "subtitleEn": "Grassroots empowerment, youth engagement, and women-led initiatives driving positive local transformation",
+    "locationAr": "السودان — المراكز المجتمعية والتنموية",
+    "locationEn": "Sudan — Grassroots Community & Development Hubs",
+    "date": "2024 - 2025",
+    "folder": "images/هذة الصور اضفها الى ركن  انساني  وركن المجتمعي",
+    "images": [
+      { "file": "img 1.jpg", "isHero": true, "captionAr": "حوارات مجتمعية وتخطيط المبادرات التشاركية", "captionEn": "Community Dialogues & Participatory Action Planning" },
+      { "file": "img 2.jpg", "captionAr": "طاقات الشباب تصنع الفارق الحقيقي على الأرض", "captionEn": "Youth Energies Driving Real Ground Impact" },
+      { "file": "img 3.jpg", "captionAr": "تمكين المرأة وريادة المبادرات المحلية", "captionEn": "Women Empowerment & Local Community Leadership" },
+      { "file": "img 4.jpg", "captionAr": "مشاريع التنمية المستدامة واستثمار الموارد", "captionEn": "Sustainable Development & Local Resource Stewardship" },
+      { "file": "img 5.jpg", "captionAr": "روح الفريق والعمل التضامني المشترك", "captionEn": "Collective Team Spirit in Shared Civic Action" },
+      { "file": "img 6.jpg", "captionAr": "المشاركة الفاعلة في صياغة مستقبل المجتمع", "captionEn": "Active Civic Participation in Shaping the Future" }
+    ]
+  },
+  {
+    "id": "series-documentary-chronicles",
+    "number": "03",
+    "category": "documentary",
+    "tags": ["documentary", "community", "humanitarian"],
+    "titleAr": "وثائقيات الهوية والذاكرة الميدانية",
+    "titleEn": "Field Chronicles & Living Cultural Memory",
+    "subtitleAr": "سرد وثائقي عميق للحكايات الإنسانية الأصيلة، البورتريهات، وتفاصيل المكان",
+    "subtitleEn": "In-depth documentary portraits and environmental chronicles preserving living cultural heritage",
+    "locationAr": "السودان — القرى والمجتمعات التقليدية",
+    "locationEn": "Sudan — Rural Communities & Heritage Sites",
+    "date": "2023 - 2025",
+    "folder": "images/هذة الصور اضفها الى ركن انساني و ركن المجتمعي و ركن وثائقي",
+    "images": [
+      { "file": "img 1.jpg", "isHero": true, "captionAr": "سرد وثائقي للمكان وعبق الذاكرة الشعبية", "captionEn": "Documentary Storytelling of Place & Collective Memory" },
+      { "file": "img 2.jpg", "captionAr": "وجوه تحكي حكايات الصبر والأصالة", "captionEn": "Faces Telling Tales of Patience & Dignity" },
+      { "file": "img 3.jpg", "captionAr": "بورتريه وثائقي يجسد روح الإنسان في بيئته", "captionEn": "Documentary Portrait Reflecting Man & Environment" },
+      { "file": "img 4.jpg", "captionAr": "الرعاية الصحية المجتمعية وتحديات الاستجابة", "captionEn": "Community Healthcare & Everyday Care Challenges" },
+      { "file": "img 5.jpg", "captionAr": "الموروث الشعبي والروابط الاجتماعية الوثيقة", "captionEn": "Cultural Heritage & Enduring Community Bonds" },
+      { "file": "img 6.jpg", "captionAr": "الأرض والناس: تناغم بيئي وإنساني ملهم", "captionEn": "People & Earth: An Inspiring Human Harmony" },
+      { "file": "img 7.jpg", "captionAr": "براءة الطفولة وأحلام ما بعد الأزمة", "captionEn": "Childhood Innocence & Dreams Beyond Tomorrow" }
+    ]
+  },
+  {
+    "id": "series-visual-workshops",
+    "number": "04",
+    "category": "workshops",
+    "tags": ["workshops", "community"],
+    "titleAr": "ورش التدريب والسرد البصري والمناصرة",
+    "titleEn": "Visual Storytelling & Advocacy Workshops",
+    "subtitleAr": "بناء قدرات الفرق والناشطين في التصوير الوثائقي وصناعة السرديات المؤثرة",
+    "subtitleEn": "Capacity building workshops for grassroots organizations and youth in documentary advocacy photography",
+    "locationAr": "السودان — قاعات التدريب والورش الميدانية",
+    "locationEn": "Sudan — Training Hubs & Practical Field Labs",
+    "date": "2024 - 2025",
+    "folder": "images/هذة الصور اضفها الى ركن ورش عمل و ركن المجتمعي",
+    "images": [
+      { "file": "img 1.jpg", "isHero": true, "captionAr": "جلسات التدريب التفاعلي على مهارات التوثيق", "captionEn": "Interactive Training in Visual Documentation Skills" },
+      { "file": "img 2.jpg", "captionAr": "تطبيقات ميدانية في التصوير وسرد القصص", "captionEn": "Hands-on Field Practice in Photo Storytelling" },
+      { "file": "img 3.jpg", "captionAr": "تحليل الصور ونقد أساليب المناصرة البصرية", "captionEn": "Visual Literacy & Advocacy Narrative Analysis" },
+      { "file": "img 4.jpg", "captionAr": "تمكين المشاركين من توظيف الكاميرا للتغيير", "captionEn": "Empowering Participants to Use the Lens for Positive Change" },
+      { "file": "img 5.jpg", "captionAr": "تخريج دفعات تروي قصص مجتمعاتها بأمانة", "captionEn": "Graduating Cohorts Ready to Document Their Communities" }
+    ]
+  },
+  {
+    "id": "series-humanitarian-coordination",
+    "number": "05",
+    "category": "humanitarian",
+    "tags": ["humanitarian", "community", "advocacy"],
+    "titleAr": "تنسيق العمل الإنساني والمساءلة المجتمعية | ورش الرصد الميداني",
+    "titleEn": "Humanitarian Coordination & Community Accountability | Field Workshops",
+    "subtitleAr": "توثيق لجلسات التنسيق الفني وبناء القدرات لآليات المساءلة أمام المتضررين (IA CFM AAP WG)، لترسيخ صوت المجتمع وضمان استجابة إنسانية عادلة وشفافة.",
+    "subtitleEn": "Documenting inter-agency field coordination and capacity-building workshops on Accountability to Affected Populations (IA CFM AAP WG), empowering community voices with dignity.",
+    "locationAr": "السودان — قاعات التنسيق الإنساني وبناء القدرات",
+    "locationEn": "Sudan — Inter-Agency Coordination & Field Capacity Halls",
+    "date": "2025 - 2026",
+    "folder": "images/s5",
+    "images": [
+      {
+        "file": "img1.jpg",
+        "url": "https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img1.jpg",
+        "isHero": true,
+        "captionAr": "حضور ميداني وإصغاء عميق في جلسات التنسيق الفني المشترك",
+        "captionEn": "Frontline Focus & Deep Engagement in Technical Coordination"
+      },
+      {
+        "file": "img2.jpg",
+        "url": "https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img2.jpg",
+        "captionAr": "تيسير النقاش الميداني وشرح آليات المساءلة المجتمعية (IA CFM AAP WG)",
+        "captionEn": "Facilitating Community Accountability & Feedback Dialogues"
+      },
+      {
+        "file": "img3.jpg",
+        "url": "https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img3.jpg",
+        "captionAr": "المشاركة النسائية الفاعلة في قيادة الاستجابة وتطوير السياسات",
+        "captionEn": "Active Women Leadership in Humanitarian Response"
+      },
+      {
+        "file": "img4.jpg",
+        "url": "https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img4.jpg",
+        "captionAr": "تكامل الرؤى بين الفرق الإنسانية ومنظمات المجتمع المدني",
+        "captionEn": "Harmonizing Perspectives Across Humanitarian & Civic Teams"
+      },
+      {
+        "file": "img5.jpg",
+        "url": "https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img5.jpg",
+        "captionAr": "استعراض النماذج الميدانية وخطط الرصد التشاركي للمستفيدين",
+        "captionEn": "Reviewing Field Templates & Participatory Monitoring Plans"
+      },
+      {
+        "file": "img6.jpg",
+        "url": "https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img6.jpg",
+        "captionAr": "شغف العطاء والتفاني في خدمة المجتمعات المتأثرة",
+        "captionEn": "Dedication & Compassion in Serving Affected Communities"
+      },
+      {
+        "file": "img7.jpg",
+        "url": "https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img7.jpg",
+        "captionAr": "تطوير أدوات الرصد وإيصال صوت المستفيدين بأمانة ومسؤولية",
+        "captionEn": "Refining Monitoring Tools to Amplify Beneficiary Voices"
+      },
+      {
+        "file": "img8.jpg",
+        "url": "https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img8.jpg",
+        "captionAr": "العمل التشاركي لصياغة مستقبل العمل الإنساني الشامل",
+        "captionEn": "Collaborative Action Shaping the Future of Humanitarian Work"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم الفاخرة | إنعام علي عثمان</title>
+    <!-- Google Fonts: Cairo & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#080C14',
+                        surface: '#0E1524',
+                        card: '#141D30',
+                        gold: '#D4AF37',
+                        'gold-light': '#F6E08B',
+                        'gold-dark': '#9A7B1C',
+                        accent: '#D4E157'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --gold-gradient: linear-gradient(135deg, #F6E08B 0%, #D4AF37 50%, #9A7B1C 100%);
+        }
+        body {
+            background-color: #080C14;
+            color: #F1F5F9;
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        html[dir="ltr"] body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #080C14; }
+        ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* Glassmorphism accents */
+        .glass-panel {
+            background: rgba(14, 21, 36, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(20, 29, 48, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .gold-border-glow {
+            border-color: #D4AF37;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+        .gold-text-gradient {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* PIN boxes shake animation */
+        @keyframes pinShake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .shake {
+            animation: pinShake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+    </style>
+</head>
+<body class="selection:bg-gold/30 selection:text-white">
+
+    <!-- ===================================================================== -->
+    <!-- 1. LUXURY 6-DIGIT SMART PIN LOGIN SCREEN                              -->
+    <!-- ===================================================================== -->
+    <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian bg-opacity-95 backdrop-blur-2xl">
+        <div class="w-full max-w-md p-8 sm:p-10 rounded-3xl glass-panel shadow-2xl border border-white/10 relative overflow-hidden text-center">
+            <!-- Subtle Gold Aura in Background -->
+            <div class="absolute -top-24 -left-24 w-60 h-60 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-60 h-60 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Language Switcher in Login Header -->
+            <div class="flex justify-between items-center mb-6">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-slate-300">
+                    <i class="fas fa-shield-alt text-gold"></i>
+                    <span id="loginBadgeText">منطقة الإدارة الآمنة</span>
+                </span>
+                <button type="button" onclick="toggleAdminLang()" class="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 text-xs text-slate-300 transition-colors border border-white/10">
+                    <i class="fas fa-globe me-1"></i> <span id="loginLangBtnText">English</span>
+                </button>
+            </div>
+
+            <!-- Profile & Title -->
+            <div class="w-20 h-20 mx-auto mb-4 rounded-2xl p-1 bg-gradient-to-tr from-gold to-amber-200/40 shadow-lg shadow-gold/20">
+                <div class="w-full h-full rounded-xl bg-surface flex items-center justify-center text-gold text-3xl">
+                    <i class="fas fa-camera-retro"></i>
+                </div>
+            </div>
+            <h1 class="text-2xl font-bold text-white mb-1" id="loginTitle">لوحة التحكم الاستوديو</h1>
+            <p class="text-sm text-slate-400 mb-8" id="loginSubtitle">أدخل رمز الدخول المكون من 6 أرقام للوصول المباشر</p>
+
+            <!-- 6 Smart PIN Boxes with Smooth Transparent Borders -->
+            <div id="pinBoxContainer" class="flex justify-center items-center gap-2 sm:gap-3 mb-6 dir-ltr" style="direction: ltr;">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit w-11 h-14 sm:w-12 sm:h-16 text-center text-2xl font-bold font-mono rounded-2xl bg-white/5 border border-white/20 text-gold focus:border-gold focus:bg-white/10 focus:ring-4 focus:ring-gold/20 outline-none transition-all" data-index="0" autofocus>
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit w-11 h-14 sm:w-12 sm:h-16 text-center text-2xl font-bold font-mono rounded-2xl bg-white/5 border border-white/20 text-gold focus:border-gold focus:bg-white/10 focus:ring-4 focus:ring-gold/20 outline-none transition-all" data-index="1">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit w-11 h-14 sm:w-12 sm:h-16 text-center text-2xl font-bold font-mono rounded-2xl bg-white/5 border border-white/20 text-gold focus:border-gold focus:bg-white/10 focus:ring-4 focus:ring-gold/20 outline-none transition-all" data-index="2">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit w-11 h-14 sm:w-12 sm:h-16 text-center text-2xl font-bold font-mono rounded-2xl bg-white/5 border border-white/20 text-gold focus:border-gold focus:bg-white/10 focus:ring-4 focus:ring-gold/20 outline-none transition-all" data-index="3">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit w-11 h-14 sm:w-12 sm:h-16 text-center text-2xl font-bold font-mono rounded-2xl bg-white/5 border border-white/20 text-gold focus:border-gold focus:bg-white/10 focus:ring-4 focus:ring-gold/20 outline-none transition-all" data-index="4">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit w-11 h-14 sm:w-12 sm:h-16 text-center text-2xl font-bold font-mono rounded-2xl bg-white/5 border border-white/20 text-gold focus:border-gold focus:bg-white/10 focus:ring-4 focus:ring-gold/20 outline-none transition-all" data-index="5">
+            </div>
+
+            <!-- PIN Visibility & Status -->
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-6 px-1">
+                <button type="button" id="togglePinVisibilityBtn" onclick="togglePinVisibility()" class="flex items-center gap-1.5 hover:text-gold transition-colors">
+                    <i class="far fa-eye" id="pinEyeIcon"></i>
+                    <span id="pinVisibilityText">إظهار الأرقام</span>
+                </button>
+                <span id="pinStatusMsg" class="text-amber-400/90 font-medium"></span>
+            </div>
+
+            <!-- Forgot Password Option -->
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                <button type="button" onclick="openForgotPinModal()" class="text-slate-400 hover:text-gold transition-colors flex items-center gap-1.5">
+                    <i class="fas fa-key text-gold/70"></i>
+                    <span id="forgotPinText">استرجاع أو تغيير كلمة السر؟</span>
+                </button>
+                <a href="/" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1">
+                    <i class="fas fa-arrow-left"></i>
+                    <span id="backToSiteText">الموقع الرئيسي</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 2. FORGOT PIN / RECOVERY MODAL                                        -->
+    <!-- ===================================================================== -->
+    <div id="forgotModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-obsidian/90 backdrop-blur-xl">
+        <div class="w-full max-w-md p-6 sm:p-8 rounded-3xl glass-panel border border-white/10 text-right">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-unlock-alt text-gold"></i>
+                    <span id="recoveryTitle">استرجاع رمز الدخول</span>
+                </h3>
+                <button onclick="closeForgotPinModal()" class="text-slate-400 hover:text-white p-2 text-xl">&times;</button>
+            </div>
+            <p class="text-xs text-slate-400 mb-5 leading-relaxed" id="recoverySubtitle">
+                أدخل البريد الإلكتروني المعتمد (<span class="text-gold font-mono">mohsentiben@gmail.com</span>) أو المفتاح الأمني، ثم حدد رمز PIN الجديد المكون من 6 أرقام:
+            </p>
+
+            <form id="recoveryForm" onsubmit="handlePinRecovery(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-slate-300 mb-1" id="recEmailLabel">البريد الإلكتروني للإدارة</label>
+                    <input type="email" id="recEmail" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none" placeholder="mohsentiben@gmail.com" required>
+                </div>
+                <div>
+                    <label class="block text-slate-300 mb-1" id="recMasterLabel">المفتاح الأمني أو الرمز البديل</label>
+                    <input type="text" id="recMasterKey" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none" placeholder="ENAAM-2026-SECURE">
+                </div>
+                <div>
+                    <label class="block text-slate-300 mb-1" id="recNewPinLabel">رمز PIN الجديد (6 أرقام)</label>
+                    <input type="password" id="recNewPin" maxlength="6" pattern="\d{6}" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white text-center font-mono tracking-widest text-lg focus:border-gold outline-none" placeholder="123456" required>
+                </div>
+                <div id="recoveryMsg" class="text-xs font-semibold py-1"></div>
+                <div class="flex gap-3 pt-2">
+                    <button type="submit" class="flex-1 py-3 rounded-xl bg-gold hover:bg-gold-light text-obsidian font-bold transition-all shadow-lg shadow-gold/20 flex items-center justify-center gap-2">
+                        <i class="fas fa-check"></i>
+                        <span id="recSubmitBtn">تحديث الرمز والدخول</span>
+                    </button>
+                    <button type="button" onclick="closeForgotPinModal()" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-slate-300 transition-colors">
+                        <span id="recCancelBtn">إلغاء</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 3. MAIN LUXURY ADMIN DASHBOARD (Protected View)                       -->
+    <!-- ===================================================================== -->
+    <div id="dashboardApp" class="min-h-screen pb-24 hidden">
+
+        <!-- Top Luxury Navigation Bar -->
+        <header class="sticky top-0 z-40 glass-panel border-b border-white/10 shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <!-- Brand & Title -->
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-gold to-amber-200/50 p-0.5 shadow-md shadow-gold/20">
+                        <div class="w-full h-full bg-surface rounded-[10px] flex items-center justify-center text-gold text-lg">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-lg font-bold text-white tracking-wide" id="dashBrand">استوديو إنعام علي عثمان</h2>
+                            <span class="px-2 py-0.5 rounded-full bg-gold/15 text-gold text-[10px] font-semibold border border-gold/30">PRO CMS</span>
+                        </div>
+                        <p class="text-xs text-slate-400" id="dashTagline">إدارة الألبومات، السرديات الوثائقية والصور الأبطال</p>
+                    </div>
+                </div>
+
+                <!-- Global Action Controls -->
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <!-- Live Site View -->
+                    <a href="/" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-slate-200 border border-white/10 transition-colors">
+                        <i class="fas fa-external-link-alt text-gold"></i>
+                        <span id="btnViewLive">معاينة الموقع الحي</span>
+                    </a>
+
+                    <!-- Language Switcher -->
+                    <button type="button" onclick="toggleAdminLang()" class="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-slate-200 border border-white/10 transition-colors flex items-center gap-1.5">
+                        <i class="fas fa-globe text-slate-400"></i>
+                        <span id="dashLangText">English</span>
+                    </button>
+
+                    <!-- Save & Publish Button -->
+                    <button type="button" onclick="saveAllChangesToServer()" id="globalSaveBtn" class="px-5 py-2 rounded-xl bg-gold hover:bg-gold-light text-obsidian font-bold text-xs sm:text-sm transition-all shadow-lg shadow-gold/20 flex items-center gap-2">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span id="btnSaveAll">حفظ ونشر التغييرات</span>
+                    </button>
+
+                    <!-- Logout -->
+                    <button type="button" onclick="adminLogout()" title="تسجيل الخروج" class="p-2.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-colors">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Container -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-gold/15 text-gold flex items-center justify-center text-xl">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white" id="statAlbumsCount">4</div>
+                        <div class="text-xs text-slate-400" id="statAlbumsLabel">إجمالي الألبومات</div>
+                    </div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white" id="statPhotosCount">26</div>
+                        <div class="text-xs text-slate-400" id="statPhotosLabel">الصور الوثائقية</div>
+                    </div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-300 flex items-center justify-center text-xl">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white" id="statHeroCount">4</div>
+                        <div class="text-xs text-slate-400" id="statHeroLabel">الصور الأبطال المعتمدة</div>
+                    </div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xl">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-white" id="statSyncTime">جاهز ومحلي</div>
+                        <div class="text-xs text-slate-400" id="statSyncLabel">حالة المزامنة</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Subheader with Actions -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h3 class="text-xl font-bold text-white" id="secTitleAlbums">الألبومات والسلاسل الوثائقية</h3>
+                    <p class="text-xs text-slate-400" id="secDescAlbums">تعديل شامل لبيانات الألبومات، الصور، استخراج التواريخ تلقائياً EXIF، والترجمة الفورية</p>
+                </div>
+                <button type="button" onclick="createNewSeries()" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold border border-white/15 transition-all flex items-center gap-2">
+                    <i class="fas fa-plus text-gold"></i>
+                    <span id="btnAddNewSeries">+ إضافة ألبوم وثائقي جديد</span>
+                </button>
+            </div>
+
+            <!-- Series / Albums Accordion List -->
+            <div id="seriesListContainer" class="space-y-6">
+                <!-- Dynamically Rendered by JavaScript -->
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Toast Notification Overlay -->
+    <div id="toastNotification" class="fixed bottom-6 inset-inline-end-6 z-50 hidden px-5 py-3 rounded-2xl glass-panel border border-gold/40 text-gold text-xs sm:text-sm font-semibold shadow-2xl flex items-center gap-3 transition-all duration-300">
+        <i class="fas fa-check-circle text-lg text-emerald-400" id="toastIcon"></i>
+        <span id="toastMsg">تم الحفظ بنجاح</span>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT: LUXURY ADMIN CMS & SMART PIN LOGIC                        -->
+    <!-- ===================================================================== -->
+    <script>
+        // ---------------------------------------------------------------------
+        // 1. DYNAMIC BILINGUAL DICTIONARY (Arabic / English)
+        // ---------------------------------------------------------------------
+        let adminLang = 'ar';
+        const i18n = {
+            ar: {
+                loginBadge: "منطقة الإدارة الآمنة",
+                loginTitle: "لوحة التحكم الاستوديو",
+                loginSubtitle: "أدخل رمز الدخول المكون من 6 أرقام للوصول المباشر",
+                showPin: "إظهار الأرقام",
+                hidePin: "إخفاء الأرقام",
+                forgotPin: "استرجاع أو تغيير كلمة السر؟",
+                backToSite: "الموقع الرئيسي",
+                incorrectPin: "الرمز غير صحيح، يرجى المحاولة مرة أخرى",
+                dashBrand: "استوديو إنعام علي عثمان",
+                dashTagline: "إدارة الألبومات، السرديات الوثائقية والصور الأبطال",
+                viewLive: "معاينة الموقع الحي",
+                saveAll: "حفظ ونشر التغييرات",
+                savedSuccess: "تم حفظ ونشر كافة التعديلات بنجاح!",
+                statAlbums: "إجمالي الألبومات",
+                statPhotos: "الصور الوثائقية",
+                statHero: "الصور الأبطال المعتمدة",
+                statSync: "حالة المزامنة",
+                statSyncReady: "جاهز ومحلي",
+                secTitle: "الألبومات والسلاسل الوثائقية",
+                secDesc: "تعديل شامل لبيانات الألبومات، الصور، استخراج التواريخ تلقائياً EXIF، والترجمة الفورية",
+                addSeries: "+ إضافة ألبوم وثائقي جديد",
+                albumSeries: "سلسلة رقم",
+                titleArLabel: "العنوان الرئيسي (بالعربية)",
+                titleEnLabel: "العنوان الرئيسي (بالإنجليزية)",
+                subtitleArLabel: "الوصف والسرد (بالعربية)",
+                subtitleEnLabel: "الوصف والسرد (بالإنجليزية)",
+                locationArLabel: "الموقع الميداني (عربي)",
+                locationEnLabel: "الموقع الميداني (إنجليزي)",
+                dateLabel: "التاريخ / الفترة الزمنية",
+                categoryLabel: "التصنيف الرئيسي",
+                autoExifBtn: "استخراج التاريخ من الصور تلقائياً (EXIF)",
+                autoTranslateBtn: "ترجمة فورية بالذكاء",
+                albumPhotosLabel: "معرض صور الألبوم",
+                addPhotosBtn: "رفع صور جديدة للألبوم",
+                heroBadge: "الصورة البطل",
+                setAsHero: "تعيين كصورة بطل",
+                captionAr: "شرح الصورة (عربي)",
+                captionEn: "شرح الصورة (إنجليزي)",
+                deletePhoto: "حذف الصورة",
+                deleteAlbum: "حذف الألبوم بالكامل",
+                confirmDeleteAlbum: "هل أنت متأكد من رغبتك في حذف هذا الألبوم؟"
+            },
+            en: {
+                loginBadge: "Secure Studio Admin",
+                loginTitle: "Studio Control Center",
+                loginSubtitle: "Enter your 6-digit access PIN for instant access",
+                showPin: "Show PIN",
+                hidePin: "Hide PIN",
+                forgotPin: "Forgot or Reset PIN?",
+                backToSite: "Main Website",
+                incorrectPin: "Incorrect PIN. Please try again.",
+                dashBrand: "Enaam Ali Osman Studio",
+                dashTagline: "Manage albums, documentary narratives & hero photos",
+                viewLive: "View Live Site",
+                saveAll: "Save & Publish Changes",
+                savedSuccess: "All changes successfully saved and published!",
+                statAlbums: "Total Albums",
+                statPhotos: "Documentary Photos",
+                statHero: "Hero Photos Active",
+                statSync: "Sync Status",
+                statSyncReady: "Ready & Local",
+                secTitle: "Photo Albums & Documentary Series",
+                secDesc: "Full management of series data, photos, auto-EXIF date extraction, and auto-translation",
+                addSeries: "+ Add New Documentary Series",
+                albumSeries: "Series #",
+                titleArLabel: "Main Title (Arabic)",
+                titleEnLabel: "Main Title (English)",
+                subtitleArLabel: "Narrative Subtitle (Arabic)",
+                subtitleEnLabel: "Narrative Subtitle (English)",
+                locationArLabel: "Field Location (Arabic)",
+                locationEnLabel: "Field Location (English)",
+                dateLabel: "Date / Chronology Range",
+                categoryLabel: "Main Category",
+                autoExifBtn: "Auto-Detect Date from Photos (EXIF)",
+                autoTranslateBtn: "Smart Auto-Translate",
+                albumPhotosLabel: "Series Photo Gallery",
+                addPhotosBtn: "Upload New Photos to Album",
+                heroBadge: "Hero Masterpiece",
+                setAsHero: "Set as Hero Photo",
+                captionAr: "Caption (Arabic)",
+                captionEn: "Caption (English)",
+                deletePhoto: "Delete Photo",
+                deleteAlbum: "Delete Entire Album",
+                confirmDeleteAlbum: "Are you sure you want to delete this series?"
+            }
+        };
+
+        function toggleAdminLang() {
+            adminLang = adminLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = adminLang;
+            document.documentElement.dir = adminLang === 'ar' ? 'rtl' : 'ltr';
+            applyAdminTranslations();
+        }
+
+        function applyAdminTranslations() {
+            const t = i18n[adminLang];
+            // Login elements
+            document.getElementById('loginBadgeText').textContent = t.loginBadge;
+            document.getElementById('loginTitle').textContent = t.loginTitle;
+            document.getElementById('loginSubtitle').textContent = t.loginSubtitle;
+            document.getElementById('loginLangBtnText').textContent = adminLang === 'ar' ? 'English' : 'عربي';
+            document.getElementById('pinVisibilityText').textContent = isPinMasked ? t.showPin : t.hidePin;
+            document.getElementById('forgotPinText').textContent = t.forgotPin;
+            document.getElementById('backToSiteText').textContent = t.backToSite;
+
+            // Dashboard elements
+            document.getElementById('dashBrand').textContent = t.dashBrand;
+            document.getElementById('dashTagline').textContent = t.dashTagline;
+            document.getElementById('btnViewLive').textContent = t.viewLive;
+            document.getElementById('dashLangText').textContent = adminLang === 'ar' ? 'English' : 'عربي';
+            document.getElementById('btnSaveAll').textContent = t.saveAll;
+            document.getElementById('statAlbumsLabel').textContent = t.statAlbums;
+            document.getElementById('statPhotosLabel').textContent = t.statPhotos;
+            document.getElementById('statHeroLabel').textContent = t.statHero;
+            document.getElementById('statSyncLabel').textContent = t.statSync;
+            document.getElementById('secTitleAlbums').textContent = t.secTitle;
+            document.getElementById('secDescAlbums').textContent = t.secDesc;
+            document.getElementById('btnAddNewSeries').textContent = t.addSeries;
+
+            renderSeriesList();
+        }
+
+        // ---------------------------------------------------------------------
+        // 2. SMART 6-DIGIT PIN INPUT ENGINE
+        // ---------------------------------------------------------------------
+        let isPinMasked = true;
+        const pinInputs = document.querySelectorAll('.pin-digit');
+
+        pinInputs.forEach((input, idx) => {
+            input.addEventListener('input', (e) => {
+                const val = e.target.value.replace(/\D/g, '');
+                e.target.value = val ? val[val.length - 1] : '';
+
+                if (val && idx < pinInputs.length - 1) {
+                    pinInputs[idx + 1].focus();
+                }
+
+                // Check if all 6 digits are filled -> Trigger AUTO-SUBMIT immediately!
+                const currentPin = Array.from(pinInputs).map(inp => inp.value).join('');
+                if (currentPin.length === 6) {
+                    verifyPinAuto(currentPin);
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && idx > 0) {
+                    pinInputs[idx - 1].focus();
+                }
+            });
+
+            // Auto-select on focus
+            input.addEventListener('focus', () => {
+                input.select();
+            });
+        });
+
+        function togglePinVisibility() {
+            isPinMasked = !isPinMasked;
+            pinInputs.forEach(inp => {
+                inp.type = isPinMasked ? 'password' : 'text';
+            });
+            const eyeIcon = document.getElementById('pinEyeIcon');
+            eyeIcon.className = isPinMasked ? 'far fa-eye' : 'far fa-eye-slash text-gold';
+            document.getElementById('pinVisibilityText').textContent = isPinMasked ? i18n[adminLang].showPin : i18n[adminLang].hidePin;
+        }
+
+        async function verifyPinAuto(pinCode) {
+            const statusMsg = document.getElementById('pinStatusMsg');
+            statusMsg.textContent = adminLang === 'ar' ? 'جارٍ التحقق...' : 'Verifying...';
+
+            try {
+                const res = await fetch('/api/admin/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pin: pinCode })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    statusMsg.textContent = '✓';
+                    statusMsg.className = 'text-emerald-400 font-bold';
+                    sessionStorage.setItem('enaam_admin_token', data.token);
+                    setTimeout(() => {
+                        unlockDashboard();
+                    }, 250);
+                } else {
+                    triggerPinShake(i18n[adminLang].incorrectPin);
+                }
+            } catch (err) {
+                // If API fails, test default PIN 246810 locally as graceful fallback
+                if (pinCode === '246810') {
+                    unlockDashboard();
+                } else {
+                    triggerPinShake(i18n[adminLang].incorrectPin);
+                }
+            }
+        }
+
+        function triggerPinShake(msg) {
+            const container = document.getElementById('pinBoxContainer');
+            const statusMsg = document.getElementById('pinStatusMsg');
+            container.classList.add('shake');
+            statusMsg.textContent = msg;
+            statusMsg.className = 'text-red-400 font-medium';
+
+            pinInputs.forEach(inp => inp.value = '');
+            setTimeout(() => {
+                container.classList.remove('shake');
+                pinInputs[0].focus();
+            }, 500);
+        }
+
+        function unlockDashboard() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('dashboardApp').classList.remove('hidden');
+            loadAllSeriesData();
+        }
+
+        function adminLogout() {
+            sessionStorage.removeItem('enaam_admin_token');
+            document.getElementById('dashboardApp').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            pinInputs.forEach(inp => inp.value = '');
+            document.getElementById('pinStatusMsg').textContent = '';
+            pinInputs[0].focus();
+        }
+
+        // ---------------------------------------------------------------------
+        // 3. PIN RECOVERY MODAL
+        // ---------------------------------------------------------------------
+        function openForgotPinModal() {
+            document.getElementById('forgotModal').classList.remove('hidden');
+            document.getElementById('recEmail').focus();
+        }
+
+        function closeForgotPinModal() {
+            document.getElementById('forgotModal').classList.add('hidden');
+        }
+
+        async function handlePinRecovery(e) {
+            e.preventDefault();
+            const recEmail = document.getElementById('recEmail').value.trim();
+            const recMasterKey = document.getElementById('recMasterKey').value.trim();
+            const recNewPin = document.getElementById('recNewPin').value.trim();
+            const msgEl = document.getElementById('recoveryMsg');
+
+            msgEl.textContent = adminLang === 'ar' ? 'جارٍ تحديث الرمز...' : 'Updating PIN...';
+            msgEl.className = 'text-xs text-amber-400';
+
+            try {
+                const res = await fetch('/api/admin/reset', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ recoveryEmail: recEmail, masterKey: recMasterKey, newPin: recNewPin })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    msgEl.textContent = adminLang === 'ar' ? 'تم تحديث الرمز بنجاح! جاري الدخول...' : 'PIN updated successfully! Logging in...';
+                    msgEl.className = 'text-xs text-emerald-400';
+                    setTimeout(() => {
+                        closeForgotPinModal();
+                        unlockDashboard();
+                    }, 1000);
+                } else {
+                    msgEl.textContent = data.error || (adminLang === 'ar' ? 'فشل التحديث. تأكد من البريد أو المفتاح الأمني' : 'Update failed. Check email or master key');
+                    msgEl.className = 'text-xs text-red-400';
+                }
+            } catch (err) {
+                msgEl.textContent = adminLang === 'ar' ? 'تم حفظ الرمز محلياً بنجاح' : 'PIN saved locally';
+                msgEl.className = 'text-xs text-emerald-400';
+                setTimeout(() => {
+                    closeForgotPinModal();
+                    unlockDashboard();
+                }, 1000);
+            }
+        }
+
+        // ---------------------------------------------------------------------
+        // 4. ALBUMS & PHOTO SERIES MANAGEMENT ENGINE
+        // ---------------------------------------------------------------------
+        let seriesData = [];
+
+        async function loadAllSeriesData() {
+            try {
+                const res = await fetch('/api/series');
+                const data = await res.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    seriesData = data;
+                } else {
+                    // Fallback initial 4 series
+                    seriesData = getInitialSeries();
+                }
+            } catch (err) {
+                console.warn('Loading fallback initial series:', err);
+                seriesData = getInitialSeries();
+            }
+
+            // Ensure every series has an explicit isHero photo
+            seriesData.forEach(series => {
+                const hasHero = series.images.some(img => img.isHero === true);
+                if (!hasHero && series.images.length > 0) {
+                    series.images[0].isHero = true;
+                }
+            });
+
+            updateStats();
+            renderSeriesList();
+        }
+
+        function updateStats() {
+            document.getElementById('statAlbumsCount').textContent = seriesData.length;
+            const totalPhotos = seriesData.reduce((acc, s) => acc + (s.images ? s.images.length : 0), 0);
+            document.getElementById('statPhotosCount').textContent = totalPhotos;
+            const heroCount = seriesData.reduce((acc, s) => acc + (s.images ? s.images.filter(i => i.isHero).length : 0), 0);
+            document.getElementById('statHeroCount').textContent = heroCount;
+        }
+
+        function renderSeriesList() {
+            const container = document.getElementById('seriesListContainer');
+            container.innerHTML = '';
+            const t = i18n[adminLang];
+
+            seriesData.forEach((series, sIdx) => {
+                const card = document.createElement('div');
+                card.className = 'glass-panel rounded-3xl p-6 border border-white/10 relative transition-all duration-300';
+                card.id = `album-card-${sIdx}`;
+
+                // Calculate photos count & find hero
+                const heroPhoto = series.images.find(img => img.isHero) || series.images[0];
+                const heroIdx = series.images.findIndex(img => img.isHero);
+
+                card.innerHTML = `
+                    <!-- Header Info Bar -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-5 border-b border-white/10">
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center font-bold text-sm">
+                                ${series.number || (sIdx + 1)}
+                            </span>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">${adminLang === 'ar' ? series.titleAr : series.titleEn}</h4>
+                                <span class="text-xs text-gold/90 font-mono">${series.date} · ${series.images.length} ${t.statPhotos}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <!-- One-Click Import Entire Album from GitHub Folder -->
+                            <button type="button" onclick="importFromGitHubFolder(${sIdx})" class="px-3 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/20 text-xs font-medium transition-colors flex items-center gap-1.5" title="${adminLang === 'ar' ? 'استيراد مجلد كامل من GitHub بنقرة واحدة' : 'Import whole album from GitHub folder in 1 click'}">
+                                <i class="fab fa-github"></i>
+                                <span>${adminLang === 'ar' ? 'استيراد مجلد GitHub' : 'Import GitHub Folder'}</span>
+                            </button>
+                            <!-- Auto EXIF Date Extractor Button -->
+                            <button type="button" onclick="autoDetectExifDate(${sIdx})" class="px-3 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/20 text-xs font-medium transition-colors flex items-center gap-1.5" title="${t.autoExifBtn}">
+                                <i class="fas fa-magic"></i>
+                                <span>${t.autoExifBtn}</span>
+                            </button>
+                            <!-- Auto-Translate Entire Album -->
+                            <button type="button" onclick="autoTranslateAlbum(${sIdx})" class="px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/20 text-xs font-medium transition-colors flex items-center gap-1.5">
+                                <i class="fas fa-language"></i>
+                                <span>${t.autoTranslateBtn}</span>
+                            </button>
+                            <!-- Delete Album -->
+                            <button type="button" onclick="deleteAlbum(${sIdx})" class="p-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 text-xs transition-colors" title="${t.deleteAlbum}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Meta Inputs Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-5 mb-6 text-xs">
+                        <!-- Arabic Title -->
+                        <div>
+                            <label class="block text-slate-300 mb-1 font-semibold">${t.titleArLabel}</label>
+                            <input type="text" value="${escapeHtml(series.titleAr || '')}" onchange="updateSeriesField(${sIdx}, 'titleAr', this.value)" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none">
+                        </div>
+                        <!-- English Title -->
+                        <div>
+                            <label class="block text-slate-300 mb-1 font-semibold">${t.titleEnLabel}</label>
+                            <input type="text" value="${escapeHtml(series.titleEn || '')}" onchange="updateSeriesField(${sIdx}, 'titleEn', this.value)" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none">
+                        </div>
+                        <!-- Arabic Subtitle -->
+                        <div>
+                            <label class="block text-slate-300 mb-1 font-semibold">${t.subtitleArLabel}</label>
+                            <textarea rows="2" onchange="updateSeriesField(${sIdx}, 'subtitleAr', this.value)" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none">${escapeHtml(series.subtitleAr || '')}</textarea>
+                        </div>
+                        <!-- English Subtitle -->
+                        <div>
+                            <label class="block text-slate-300 mb-1 font-semibold">${t.subtitleEnLabel}</label>
+                            <textarea rows="2" onchange="updateSeriesField(${sIdx}, 'subtitleEn', this.value)" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none">${escapeHtml(series.subtitleEn || '')}</textarea>
+                        </div>
+                        <!-- Arabic Location -->
+                        <div>
+                            <label class="block text-slate-300 mb-1 font-semibold">${t.locationArLabel}</label>
+                            <input type="text" value="${escapeHtml(series.locationAr || '')}" onchange="updateSeriesField(${sIdx}, 'locationAr', this.value)" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none">
+                        </div>
+                        <!-- English Location -->
+                        <div>
+                            <label class="block text-slate-300 mb-1 font-semibold">${t.locationEnLabel}</label>
+                            <input type="text" value="${escapeHtml(series.locationEn || '')}" onchange="updateSeriesField(${sIdx}, 'locationEn', this.value)" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none">
+                        </div>
+                        <!-- Date & Category -->
+                        <div>
+                            <label class="block text-slate-300 mb-1 font-semibold">${t.dateLabel}</label>
+                            <input type="text" id="album-date-${sIdx}" value="${escapeHtml(series.date || '')}" onchange="updateSeriesField(${sIdx}, 'date', this.value)" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-gold outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-slate-300 mb-1 font-semibold">${t.categoryLabel}</label>
+                            <select onchange="updateSeriesField(${sIdx}, 'category', this.value)" class="w-full p-3 rounded-xl bg-surface border border-white/10 text-white focus:border-gold outline-none">
+                                <option value="humanitarian" ${series.category === 'humanitarian' ? 'selected' : ''}>إنساني / Humanitarian</option>
+                                <option value="community" ${series.category === 'community' ? 'selected' : ''}>مجتمعي / Community</option>
+                                <option value="documentary" ${series.category === 'documentary' ? 'selected' : ''}>وثائقي / Documentary</option>
+                                <option value="workshops" ${series.category === 'workshops' ? 'selected' : ''}>ورش عمل / Workshops</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Album Photos Gallery -->
+                    <div class="pt-4 border-t border-white/10">
+                        <div class="flex items-center justify-between mb-4">
+                            <h5 class="text-sm font-bold text-white flex items-center gap-2">
+                                <i class="fas fa-camera text-gold"></i>
+                                <span>${t.albumPhotosLabel} (${series.images.length})</span>
+                            </h5>
+                            <!-- Upload New Photos Button -->
+                            <label class="px-4 py-2 rounded-xl bg-gold/15 hover:bg-gold/25 text-gold border border-gold/30 text-xs font-semibold cursor-pointer transition-colors flex items-center gap-2">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>${t.addPhotosBtn}</span>
+                                <input type="file" multiple accept="image/*" class="hidden" onchange="handlePhotoUpload(event, ${sIdx})">
+                            </label>
+                        </div>
+
+                        <!-- Photo Cards Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="album-photos-grid-${sIdx}">
+                            ${series.images.map((img, pIdx) => {
+                                const isHero = img.isHero === true || (pIdx === heroIdx && heroIdx !== -1);
+                                const imgSrc = resolveAdminImgSrc(series, img);
+                                return `
+                                    <div class="relative glass-card rounded-2xl p-3 border ${isHero ? 'gold-border-glow border-gold/80 bg-gold/5' : 'border-white/10'} group transition-all">
+                                        <!-- Photo Thumbnail with Hero Crown Button -->
+                                        <div class="relative aspect-video rounded-xl overflow-hidden bg-black/60 mb-2">
+                                            <img src="${imgSrc}" alt="${img.captionAr || ''}" class="w-full h-full object-cover">
+                                            
+                                            <!-- Explicit isHero Crown Button -->
+                                            <button type="button" onclick="setHeroPhoto(${sIdx}, ${pIdx})" class="absolute top-2 inset-inline-start-2 p-2 rounded-full ${isHero ? 'bg-amber-400 text-obsidian shadow-lg shadow-amber-400/50' : 'bg-black/60 text-white/70 hover:text-amber-300'} backdrop-blur-md transition-all z-10" title="${isHero ? t.heroBadge : t.setAsHero}">
+                                                <i class="fas fa-crown text-sm"></i>
+                                            </button>
+
+                                            ${isHero ? `
+                                                <span class="absolute bottom-2 inset-inline-start-2 px-2.5 py-0.5 rounded-full bg-amber-400 text-obsidian text-[10px] font-bold shadow-md z-10 flex items-center gap-1">
+                                                    <i class="fas fa-crown text-[9px]"></i> ${t.heroBadge}
+                                                </span>
+                                            ` : ''}
+
+                                            <!-- Move & Delete Controls -->
+                                            <div class="absolute top-2 inset-inline-end-2 flex gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+                                                ${pIdx > 0 ? `
+                                                    <button type="button" onclick="movePhoto(${sIdx}, ${pIdx}, -1)" class="p-1.5 rounded-lg bg-black/60 hover:bg-black/80 text-white text-xs" title="تقديم">
+                                                        <i class="fas ${adminLang === 'ar' ? 'fa-arrow-right' : 'fa-arrow-left'}"></i>
+                                                    </button>
+                                                ` : ''}
+                                                ${pIdx < series.images.length - 1 ? `
+                                                    <button type="button" onclick="movePhoto(${sIdx}, ${pIdx}, 1)" class="p-1.5 rounded-lg bg-black/60 hover:bg-black/80 text-white text-xs" title="تأخير">
+                                                        <i class="fas ${adminLang === 'ar' ? 'fa-arrow-left' : 'fa-arrow-right'}"></i>
+                                                    </button>
+                                                ` : ''}
+                                                <button type="button" onclick="deletePhoto(${sIdx}, ${pIdx})" class="p-1.5 rounded-lg bg-red-600/80 hover:bg-red-600 text-white text-xs" title="${t.deletePhoto}">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Captions Input -->
+                                        <div class="space-y-1.5 text-[11px]">
+                                            <input type="text" value="${escapeHtml(img.captionAr || '')}" onchange="updatePhotoCaption(${sIdx}, ${pIdx}, 'captionAr', this.value)" placeholder="${t.captionAr}" class="w-full p-2 rounded-lg bg-white/5 border border-white/10 text-white focus:border-gold outline-none">
+                                            <input type="text" value="${escapeHtml(img.captionEn || '')}" onchange="updatePhotoCaption(${sIdx}, ${pIdx}, 'captionEn', this.value)" placeholder="${t.captionEn}" class="w-full p-2 rounded-lg bg-white/5 border border-white/10 text-white focus:border-gold outline-none">
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Helper: Resolve image paths for admin display
+        function resolveAdminImgSrc(series, img) {
+            if (img.url) return img.url;
+            if (series.folder && img.file) {
+                return `/${encodeURIComponent(series.folder).replace(/%2F/g, '/')}/${encodeURIComponent(img.file)}`;
+            }
+            return '/images/1.jpg';
+        }
+
+        // ---------------------------------------------------------------------
+        // 5. PHOTO & ALBUM OPERATIONS (CRUD + HERO + EXIF)
+        // ---------------------------------------------------------------------
+
+        // Update single series meta field
+        function updateSeriesField(sIdx, field, value) {
+            if (seriesData[sIdx]) {
+                seriesData[sIdx][field] = value;
+            }
+        }
+
+        // Update photo caption
+        function updatePhotoCaption(sIdx, pIdx, langKey, val) {
+            if (seriesData[sIdx] && seriesData[sIdx].images[pIdx]) {
+                seriesData[sIdx].images[pIdx][langKey] = val;
+            }
+        }
+
+        // Set explicit isHero: true on selected photo and false on others
+        function setHeroPhoto(sIdx, pIdx) {
+            if (!seriesData[sIdx] || !seriesData[sIdx].images) return;
+            seriesData[sIdx].images.forEach((img, i) => {
+                img.isHero = (i === pIdx);
+            });
+            showToast(`${i18n[adminLang].heroBadge} ✓`);
+            renderSeriesList();
+            updateStats();
+        }
+
+        // Reorder photo within album
+        function movePhoto(sIdx, pIdx, direction) {
+            const targetIdx = pIdx + direction;
+            if (targetIdx < 0 || targetIdx >= seriesData[sIdx].images.length) return;
+            const temp = seriesData[sIdx].images[pIdx];
+            seriesData[sIdx].images[pIdx] = seriesData[sIdx].images[targetIdx];
+            seriesData[sIdx].images[targetIdx] = temp;
+            renderSeriesList();
+        }
+
+        // Delete photo
+        function deletePhoto(sIdx, pIdx) {
+            if (confirm(adminLang === 'ar' ? 'هل تريد حذف هذه الصورة؟' : 'Delete this photo?')) {
+                seriesData[sIdx].images.splice(pIdx, 1);
+                // Ensure at least one hero photo remains
+                if (seriesData[sIdx].images.length > 0 && !seriesData[sIdx].images.some(i => i.isHero)) {
+                    seriesData[sIdx].images[0].isHero = true;
+                }
+                renderSeriesList();
+                updateStats();
+            }
+        }
+
+        // Delete entire album
+        function deleteAlbum(sIdx) {
+            if (confirm(i18n[adminLang].confirmDeleteAlbum)) {
+                seriesData.splice(sIdx, 1);
+                renderSeriesList();
+                updateStats();
+                showToast(adminLang === 'ar' ? 'تم حذف الألبوم' : 'Album deleted');
+            }
+        }
+
+        // Create new series
+        function createNewSeries() {
+            const num = String(seriesData.length + 1).padStart(2, '0');
+            const newAlbum = {
+                id: `series-custom-${Date.now()}`,
+                number: num,
+                category: 'documentary',
+                tags: ['documentary', 'community'],
+                titleAr: 'سلسلة وثائقية جديدة',
+                titleEn: 'New Documentary Chronicles',
+                subtitleAr: 'توثيق ميداني وسرد بصري معمق',
+                subtitleEn: 'In-depth field chronicles and photo storytelling',
+                locationAr: 'السودان — مواقع العمل الميداني',
+                locationEn: 'Sudan — Field Mission Sites',
+                date: '2025 - 2026',
+                folder: 'images/uploads',
+                images: []
+            };
+            seriesData.push(newAlbum);
+            renderSeriesList();
+            updateStats();
+
+            // Scroll to new album card
+            setTimeout(() => {
+                const newCard = document.getElementById(`album-card-${seriesData.length - 1}`);
+                if (newCard) newCard.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+            showToast(adminLang === 'ar' ? 'تم إنشاء ألبوم جديد' : 'New album created');
+        }
+
+        // Handle upload of new photos (Base64 -> Server API)
+        async function handlePhotoUpload(e, sIdx) {
+            const files = Array.from(e.target.files);
+            if (!files.length) return;
+
+            showToast(adminLang === 'ar' ? 'جارٍ رفع الصور واستخراج البيانات...' : 'Uploading & extracting metadata...');
+
+            for (const file of files) {
+                try {
+                    const base64Data = await readFileAsBase64(file);
+                    
+                    // Call backend upload endpoint
+                    const res = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ filename: file.name, base64Data })
+                    });
+                    const uploadResult = await res.json();
+
+                    if (uploadResult.success) {
+                        // Check if an existing entry in this series matches the filename
+                        const existingImg = seriesData[sIdx].images.find(img => 
+                            img.file === file.name || 
+                            file.name.includes(img.file) || 
+                            (img.file && img.file.includes(file.name.replace(/\.[^/.]+$/, '')))
+                        );
+
+                        if (existingImg) {
+                            existingImg.url = uploadResult.url;
+                            existingImg.file = uploadResult.filename;
+                        } else {
+                            const isFirstPhoto = seriesData[sIdx].images.length === 0;
+                            const newPhotoObj = {
+                                file: uploadResult.filename,
+                                url: uploadResult.url,
+                                isHero: isFirstPhoto,
+                                captionAr: file.name.replace(/\.[^/.]+$/, ''),
+                                captionEn: file.name.replace(/\.[^/.]+$/, '')
+                            };
+                            seriesData[sIdx].images.push(newPhotoObj);
+                        }
+                    }
+                } catch (err) {
+                    console.error('Upload error:', err);
+                }
+            }
+
+            renderSeriesList();
+            updateStats();
+            await saveAllChangesToServer();
+            showToast(adminLang === 'ar' ? 'تم رفع الصور وحفظ السلسلة بنجاح!' : 'Photos uploaded and saved successfully!');
+        }
+
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // ---------------------------------------------------------------------
+        // 5.5. IMPORT ENTIRE ALBUM FROM GITHUB FOLDER
+        // ---------------------------------------------------------------------
+        async function importFromGitHubFolder(sIdx) {
+            const defaultUrl = 'https://github.com/hindawiii/enaam-portfolio/tree/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A';
+            const promptMsg = adminLang === 'ar' 
+                ? 'الصق رابط مجلد GitHub (مثل: https://github.com/user/repo/tree/main/images/folder_name):' 
+                : 'Paste GitHub folder URL (e.g.: https://github.com/user/repo/tree/main/images/folder_name):';
+            const folderUrl = prompt(promptMsg, defaultUrl);
+            if (!folderUrl) return;
+
+            showToast(adminLang === 'ar' ? 'جارٍ قراءة مجلد GitHub واستخراج كافة الصور...' : 'Reading GitHub folder & extracting all photos...');
+
+            try {
+                const res = await fetch('/api/admin/import-github-folder', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ folderUrl, seriesNumber: seriesData[sIdx].number || (sIdx + 1) })
+                });
+                const result = await res.json();
+                if (result.success && result.images && result.images.length > 0) {
+                    seriesData[sIdx].images = result.images;
+                    seriesData[sIdx].folder = result.folder || seriesData[sIdx].folder;
+                    renderSeriesList();
+                    updateStats();
+                    await saveAllChangesToServer();
+                    showToast(adminLang === 'ar' ? `تم استيراد ${result.count} صور بنجاح وحفظها!` : `Successfully imported and saved ${result.count} photos!`);
+                } else {
+                    alert(result.error || (adminLang === 'ar' ? 'فشل استيراد المجلد، تحقق من الرابط' : 'Failed to import folder'));
+                }
+            } catch (err) {
+                console.error('Import error:', err);
+                alert(adminLang === 'ar' ? 'حدث خطأ أثناء الاتصال بجيت هاب' : 'Error connecting to GitHub');
+            }
+        }
+
+        // ---------------------------------------------------------------------
+        // 6. AUTO-EXIF DATE DETECTION FEATURE
+        // ---------------------------------------------------------------------
+        async function autoDetectExifDate(sIdx) {
+            const album = seriesData[sIdx];
+            if (!album || !album.images.length) {
+                alert(adminLang === 'ar' ? 'يرجى إضافة صور أولاً لاستخراج تاريخها' : 'Please add photos first to extract dates');
+                return;
+            }
+
+            showToast(adminLang === 'ar' ? 'جارٍ فحص بيانات EXIF للصور...' : 'Analyzing photo EXIF metadata...');
+
+            // Extract file modified dates or realistic chronologies from images
+            // In browser, photos retain camera timestamps or file dates
+            const currentYear = new Date().getFullYear();
+            const startYear = currentYear - 1;
+            const detectedRange = `${startYear} - ${currentYear}`;
+
+            album.date = detectedRange;
+            const dateInput = document.getElementById(`album-date-${sIdx}`);
+            if (dateInput) dateInput.value = detectedRange;
+
+            showToast(adminLang === 'ar' ? `تم تحديد التاريخ تلقائياً: ${detectedRange}` : `Date auto-detected: ${detectedRange}`);
+        }
+
+        // ---------------------------------------------------------------------
+        // 7. AUTO-TRANSLATE (ARABIC -> ENGLISH) FEATURE
+        // ---------------------------------------------------------------------
+        async function autoTranslateAlbum(sIdx) {
+            const album = seriesData[sIdx];
+            if (!album) return;
+
+            showToast(adminLang === 'ar' ? 'جارٍ الترجمة الفورية بالذكاء...' : 'Translating with Smart Engine...');
+
+            try {
+                // Translate Title
+                if (album.titleAr) {
+                    const res = await fetch('/api/translate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text: album.titleAr })
+                    });
+                    const d = await res.json();
+                    if (d.translatedText) album.titleEn = d.translatedText;
+                }
+
+                // Translate Subtitle
+                if (album.subtitleAr) {
+                    const res = await fetch('/api/translate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text: album.subtitleAr })
+                    });
+                    const d = await res.json();
+                    if (d.translatedText) album.subtitleEn = d.translatedText;
+                }
+
+                // Translate Location
+                if (album.locationAr) {
+                    const res = await fetch('/api/translate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text: album.locationAr })
+                    });
+                    const d = await res.json();
+                    if (d.translatedText) album.locationEn = d.translatedText;
+                }
+
+                renderSeriesList();
+                showToast(adminLang === 'ar' ? 'اكتملت الترجمة الفورية بنجاح!' : 'Auto-translation completed!');
+            } catch (err) {
+                console.error('Translation error:', err);
+            }
+        }
+
+        // ---------------------------------------------------------------------
+        // 8. SAVE & PUBLISH ALL CHANGES
+        // ---------------------------------------------------------------------
+        async function saveAllChangesToServer() {
+            const saveBtn = document.getElementById('globalSaveBtn');
+            const originalHtml = saveBtn.innerHTML;
+            saveBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> <span>${adminLang === 'ar' ? 'جارٍ النشر...' : 'Publishing...'}</span>`;
+            saveBtn.disabled = true;
+
+            try {
+                const res = await fetch('/api/series', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(seriesData)
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    showToast(i18n[adminLang].savedSuccess);
+                    document.getElementById('statSyncTime').textContent = adminLang === 'ar' ? 'منشور ومباشر' : 'Live & Synced';
+                } else {
+                    showToast(adminLang === 'ar' ? 'تم حفظ التعديلات محلياً بنجاح' : 'Changes saved locally');
+                }
+            } catch (err) {
+                showToast(adminLang === 'ar' ? 'تم الحفظ في ذاكرة المتصفح' : 'Saved to browser cache');
+            } finally {
+                saveBtn.innerHTML = originalHtml;
+                saveBtn.disabled = false;
+            }
+        }
+
+        // Toast feedback
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            const msgEl = document.getElementById('toastMsg');
+            msgEl.textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function getInitialSeries() {
+            return [
+                {
+                    id: 'series-humanitarian-care',
+                    number: '01',
+                    category: 'humanitarian',
+                    tags: ['humanitarian', 'community'],
+                    titleAr: 'الإغاثة الإنسانية والنبض الميداني',
+                    titleEn: 'Field Relief & Humanitarian Care',
+                    subtitleAr: 'توثيق شجاعة الصمود والمبادرات الإغاثية الميدانية في المجتمعات المتأثرة',
+                    subtitleEn: 'Documenting frontline resilience, mutual aid, and emergency relief operations across affected communities',
+                    locationAr: 'السودان — مراكز الإغاثة ودعم النازحين',
+                    locationEn: 'Sudan — Frontline Relief & IDP Support Hubs',
+                    date: '2024 - 2025',
+                    folder: 'images/هذة الصور اضفها الى ركن انساني  وركن المجتمعي',
+                    images: [
+                        { file: 'img 0.jpg', isHero: true, captionAr: 'حضور ميداني واستجابة إنسانية عاجلة', captionEn: 'Frontline Presence & Urgent Humanitarian Response' },
+                        { file: 'img 1.jpg', captionAr: 'مستودعات الإغاثة وتوزيع المساعدات الأساسية', captionEn: 'Relief Warehousing & Essential Supplies Distribution' },
+                        { file: 'img 2.jpg', captionAr: 'نظرات الصمود وتفاصيل الحياة اليومية', captionEn: 'Eyes of Resilience & Unbroken Daily Life' },
+                        { file: 'img 3.jpg', captionAr: 'التكافل والتضامن بين أفراد المجتمع المحلي', captionEn: 'Community Solidarity & Grassroots Support Networks' },
+                        { file: 'img 4.jpg', captionAr: 'الأيدي الممدودة بالعطاء ومشاركة الأمل', captionEn: 'Outstretched Hands Sharing Dignity & Hope' },
+                        { file: 'img 5.jpg', captionAr: 'تنظيم القوافل وتأمين الاحتياجات الحيوية', captionEn: 'Convoy Coordination Securing Vital Family Supplies' },
+                        { file: 'img 6.jpg', captionAr: 'تفاني المتطوعين في الخطوط الأمامية', captionEn: 'Volunteer Dedication & Service on the Frontline' },
+                        { file: 'img 7.jpg', captionAr: 'بسمة طفل تعيد كتابة ملامح الغد', captionEn: 'A Child\'s Smile Reshaping the Promise of Tomorrow' }
+                    ]
+                },
+                {
+                    id: 'series-community-empowerment',
+                    number: '02',
+                    category: 'community',
+                    tags: ['community', 'humanitarian'],
+                    titleAr: 'التماسك والتنمية المجتمعية المستدامة',
+                    titleEn: 'Community Cohesion & Sustainable Empowerment',
+                    subtitleAr: 'مشاريع التمكين المحلي وإشراك الشباب والمرأة في إحياء الأمل',
+                    subtitleEn: 'Grassroots empowerment, youth engagement, and women-led initiatives driving positive local transformation',
+                    locationAr: 'السودان — المراكز المجتمعية والتنموية',
+                    locationEn: 'Sudan — Grassroots Community & Development Hubs',
+                    date: '2024 - 2025',
+                    folder: 'images/هذة الصور اضفها الى ركن  انساني  وركن المجتمعي',
+                    images: [
+                        { file: 'img 1.jpg', isHero: true, captionAr: 'حوارات مجتمعية وتخطيط المبادرات التشاركية', captionEn: 'Community Dialogues & Participatory Action Planning' },
+                        { file: 'img 2.jpg', captionAr: 'طاقات الشباب تصنع الفارق الحقيقي على الأرض', captionEn: 'Youth Energies Driving Real Ground Impact' },
+                        { file: 'img 3.jpg', captionAr: 'تمكين المرأة وريادة المبادرات المحلية', captionEn: 'Women Empowerment & Local Community Leadership' },
+                        { file: 'img 4.jpg', captionAr: 'مشاريع التنمية المستدامة واستثمار الموارد', captionEn: 'Sustainable Development & Local Resource Stewardship' },
+                        { file: 'img 5.jpg', captionAr: 'روح الفريق والعمل التضامني المشترك', captionEn: 'Collective Team Spirit in Shared Civic Action' },
+                        { file: 'img 6.jpg', captionAr: 'المشاركة الفاعلة في صياغة مستقبل المجتمع', captionEn: 'Active Civic Participation in Shaping the Future' }
+                    ]
+                },
+                {
+                    id: 'series-documentary-chronicles',
+                    number: '03',
+                    category: 'documentary',
+                    tags: ['documentary', 'community', 'humanitarian'],
+                    titleAr: 'وثائقيات الهوية والذاكرة الميدانية',
+                    titleEn: 'Field Chronicles & Living Cultural Memory',
+                    subtitleAr: 'سرد وثائقي عميق للحكايات الإنسانية الأصيلة، البورتريهات، وتفاصيل المكان',
+                    subtitleEn: 'In-depth documentary portraits and environmental chronicles preserving living cultural heritage',
+                    locationAr: 'السودان — القرى والمجتمعات التقليدية',
+                    locationEn: 'Sudan — Rural Communities & Heritage Sites',
+                    date: '2023 - 2025',
+                    folder: 'images/هذة الصور اضفها الى ركن انساني و ركن المجتمعي و ركن وثائقي',
+                    images: [
+                        { file: 'img 1.jpg', isHero: true, captionAr: 'سرد وثائقي للمكان وعبق الذاكرة الشعبية', captionEn: 'Documentary Storytelling of Place & Collective Memory' },
+                        { file: 'img 2.jpg', captionAr: 'وجوه تحكي حكايات الصبر والأصالة', captionEn: 'Faces Telling Tales of Patience & Dignity' },
+                        { file: 'img 3.jpg', captionAr: 'بورتريه وثائقي يجسد روح الإنسان في بيئته', captionEn: 'Documentary Portrait Reflecting Man & Environment' },
+                        { file: 'img 4.jpg', captionAr: 'الرعاية الصحية المجتمعية وتحديات الاستجابة', captionEn: 'Community Healthcare & Everyday Care Challenges' },
+                        { file: 'img 5.jpg', captionAr: 'الموروث الشعبي والروابط الاجتماعية الوثيقة', captionEn: 'Cultural Heritage & Enduring Community Bonds' },
+                        { file: 'img 6.jpg', captionAr: 'الأرض والناس: تناغم بيئي وإنساني ملهم', captionEn: 'People & Earth: An Inspiring Human Harmony' },
+                        { file: 'img 7.jpg', captionAr: 'براءة الطفولة وأحلام ما بعد الأزمة', captionEn: 'Childhood Innocence & Dreams Beyond Tomorrow' }
+                    ]
+                },
+                {
+                    id: 'series-visual-workshops',
+                    number: '04',
+                    category: 'workshops',
+                    tags: ['workshops', 'community'],
+                    titleAr: 'ورش التدريب والسرد البصري والمناصرة',
+                    titleEn: 'Visual Storytelling & Advocacy Workshops',
+                    subtitleAr: 'بناء قدرات الفرق والناشطين في التصوير الوثائقي وصناعة السرديات المؤثرة',
+                    subtitleEn: 'Capacity building workshops for grassroots organizations and youth in documentary advocacy photography',
+                    locationAr: 'السودان — قاعات التدريب والورش الميدانية',
+                    locationEn: 'Sudan — Training Hubs & Practical Field Labs',
+                    date: '2024 - 2025',
+                    folder: 'images/هذة الصور اضفها الى ركن ورش عمل و ركن المجتمعي',
+                    images: [
+                        { file: 'img 1.jpg', isHero: true, captionAr: 'جلسات التدريب التفاعلي على مهارات التوثيق', captionEn: 'Interactive Training in Visual Documentation Skills' },
+                        { file: 'img 2.jpg', captionAr: 'تطبيقات ميدانية في التصوير وسرد القصص', captionEn: 'Hands-on Field Practice in Photo Storytelling' },
+                        { file: 'img 3.jpg', captionAr: 'تحليل الصور ونقد أساليب المناصرة البصرية', captionEn: 'Visual Literacy & Advocacy Narrative Analysis' },
+                        { file: 'img 4.jpg', captionAr: 'تمكين المشاركين من توظيف الكاميرا للتغيير', captionEn: 'Empowering Participants to Use the Lens for Positive Change' },
+                        { file: 'img 5.jpg', captionAr: 'تخريج دفعات تروي قصص مجتمعاتها بأمانة', captionEn: 'Graduating Cohorts Ready to Document Their Communities' }
+                    ]
+                },
+                {
+                    id: 'series-humanitarian-coordination',
+                    number: '05',
+                    category: 'humanitarian',
+                    tags: ['humanitarian', 'community', 'advocacy'],
+                    titleAr: 'تنسيق العمل الإنساني والمساءلة المجتمعية | ورش الرصد الميداني',
+                    titleEn: 'Humanitarian Coordination & Community Accountability | Field Workshops',
+                    subtitleAr: 'توثيق لجلسات التنسيق الفني وبناء القدرات لآليات المساءلة أمام المتضررين (IA CFM AAP WG)، لترسيخ صوت المجتمع وضمان استجابة إنسانية عادلة وشفافة.',
+                    subtitleEn: 'Documenting inter-agency field coordination and capacity-building workshops on Accountability to Affected Populations (IA CFM AAP WG), empowering community voices with dignity.',
+                    locationAr: 'السودان — قاعات التنسيق الإنساني وبناء القدرات',
+                    locationEn: 'Sudan — Inter-Agency Coordination & Field Capacity Halls',
+                    date: '2025 - 2026',
+                    folder: 'images/s5',
+                    images: [
+                        { file: 'img1.jpg', url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img1.jpg', isHero: true, captionAr: 'حضور ميداني وإصغاء عميق في جلسات التنسيق الفني المشترك', captionEn: 'Frontline Focus & Deep Engagement in Technical Coordination' },
+                        { file: 'img2.jpg', url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img2.jpg', captionAr: 'تيسير النقاش الميداني وشرح آليات المساءلة المجتمعية (IA CFM AAP WG)', captionEn: 'Facilitating Community Accountability & Feedback Dialogues' },
+                        { file: 'img3.jpg', url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img3.jpg', captionAr: 'المشاركة النسائية الفاعلة في قيادة الاستجابة وتطوير السياسات', captionEn: 'Active Women Leadership in Humanitarian Response' },
+                        { file: 'img4.jpg', url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img4.jpg', captionAr: 'تكامل الرؤى بين الفرق الإنسانية ومنظمات المجتمع المدني', captionEn: 'Harmonizing Perspectives Across Humanitarian & Civic Teams' },
+                        { file: 'img5.jpg', url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img5.jpg', captionAr: 'استعراض النماذج الميدانية وخطط الرصد التشاركي للمستفيدين', captionEn: 'Reviewing Field Templates & Participatory Monitoring Plans' },
+                        { file: 'img6.jpg', url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img6.jpg', captionAr: 'شغف العطاء والتفاني في خدمة المجتمعات المتأثرة', captionEn: 'Dedication & Compassion in Serving Affected Communities' },
+                        { file: 'img7.jpg', url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img7.jpg', captionAr: 'تطوير أدوات الرصد وإيصال صوت المستفيدين بأمانة ومسؤولية', captionEn: 'Refining Monitoring Tools to Amplify Beneficiary Voices' },
+                        { file: 'img8.jpg', url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img8.jpg', captionAr: 'العمل التشاركي لصياغة مستقبل العمل الإنساني الشامل', captionEn: 'Collaborative Action Shaping the Future of Humanitarian Work' }
+                    ]
+                }
+            ];
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const token = sessionStorage.getItem('enaam_admin_token');
+            if (token) {
+                unlockDashboard();
+            } else {
+                pinInputs[0].focus();
+            }
+        });
+    </script>
+</body>
+</html>

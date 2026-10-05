@@ -537,6 +537,7 @@
             box-shadow: var(--shadow-card);
             transition: transform 0.4s ease, border-color 0.4s ease, opacity 0.4s ease;
             position: relative;
+            opacity: 1;
         }
         .series-card:hover {
             border-color: rgba(212, 225, 87, 0.35);
@@ -714,7 +715,7 @@
         body[dir="ltr"] .slider-nav-btn.prev { left: 20px; }
         body[dir="ltr"] .slider-nav-btn.next { right: 20px; }
 
-        /* Hero Photo Watermark Badge */
+        /* Hero Photo Watermark Badge (Icon-only gold crown masterpiece emblem) */
         .hero-photo-watermark {
             position: absolute;
             top: 16px;
@@ -722,22 +723,21 @@
             background: rgba(14, 18, 14, 0.92);
             backdrop-filter: blur(8px);
             border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.76rem;
-            font-weight: 700;
-            letter-spacing: 1px;
+            color: #facc15;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
             z-index: 6;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 225, 87, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 225, 87, 0.35);
             pointer-events: none;
+            transition: transform 0.3s ease;
         }
         .hero-photo-watermark i {
             color: #facc15;
-            font-size: 0.82rem;
+            font-size: 1.05rem;
         }
 
         /* Dedicated Mobile Navigation Bar (Tucked cleanly below the photo on mobile) */
@@ -1574,23 +1574,13 @@
             <h2 class="section-title" data-key="portfolio_title">Portfolio</h2>
             <p class="section-desc" data-key="portfolio_desc">A curated selection of visual stories and community projects</p>
         </div>
-        <div class="portfolio-controls-bar reveal">
+        <div class="portfolio-controls-bar reveal" style="justify-content: center;">
             <div class="portfolio-filter" id="portfolioFilter">
                 <button class="filter-btn active" data-filter="all" data-key="filter_all">All Series</button>
                 <button class="filter-btn" data-filter="humanitarian" data-key="filter_humanitarian">Humanitarian</button>
                 <button class="filter-btn" data-filter="community" data-key="filter_community">Community</button>
                 <button class="filter-btn" data-filter="documentary" data-key="filter_documentary">Documentary</button>
                 <button class="filter-btn" data-filter="workshops" data-key="filter_workshops">Workshops</button>
-            </div>
-            <div class="view-mode-toggle" id="viewModeToggle">
-                <button class="view-mode-btn active" id="vmSliderBtn" data-mode="slider" type="button">
-                    <i class="fas fa-film"></i>
-                    <span data-key="portfolio_view_slider">سلايدر القصص السينمائي</span>
-                </button>
-                <button class="view-mode-btn" id="vmGridBtn" data-mode="grid" type="button">
-                    <i class="fas fa-th-large"></i>
-                    <span data-key="portfolio_view_grid">الموزاييك التحريري Bento Grid</span>
-                </button>
             </div>
         </div>
 
@@ -1722,6 +1712,12 @@
             <a href="mailto:alienaam634@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
         <p class="footer-copy" data-key="footer_copy">&copy; 2026 Enaam Ali Osman. All Rights Reserved.</p>
+        <div style="margin-top: 14px;">
+            <a href="/admin" style="display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 0.78rem; text-decoration: none; opacity: 0.65; transition: opacity 0.25s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.65'">
+                <i class="fas fa-lock" style="font-size: 0.72rem;"></i>
+                <span data-key="footer_admin_link">لوحة التحكم الإدارية</span>
+            </a>
+        </div>
     </footer>
 
     <!-- PRO LIGHTBOX STUDIO -->
@@ -1860,6 +1856,7 @@
                 form_project: "نوع المشروع",
                 form_message: "الرسالة",
                 form_submit: "إرسال الرسالة",
+                footer_admin_link: "لوحة التحكم الإدارية",
                 footer_copy: "© 2026 Enaam Ali Osman. جميع الحقوق محفوظة."
             },
             en: {
@@ -1950,6 +1947,7 @@
                 form_project: "Project Type",
                 form_message: "Message",
                 form_submit: "Send Message",
+                footer_admin_link: "Admin Dashboard",
                 footer_copy: "© 2026 Enaam Ali Osman. All Rights Reserved."
             }
         };
@@ -2014,7 +2012,7 @@
                 date: '2024 - 2025',
                 folder: 'images/هذة الصور اضفها الى ركن انساني  وركن المجتمعي',
                 images: [
-                    { file: 'img 0.jpg', captionAr: 'حضور ميداني واستجابة إنسانية عاجلة', captionEn: 'Frontline Presence & Urgent Humanitarian Response' },
+                    { file: 'img 0.jpg', isHero: true, captionAr: 'حضور ميداني واستجابة إنسانية عاجلة', captionEn: 'Frontline Presence & Urgent Humanitarian Response' },
                     { file: 'img 1.jpg', captionAr: 'مستودعات الإغاثة وتوزيع المساعدات الأساسية', captionEn: 'Relief Warehousing & Essential Supplies Distribution' },
                     { file: 'img 2.jpg', captionAr: 'نظرات الصمود وتفاصيل الحياة اليومية', captionEn: 'Eyes of Resilience & Unbroken Daily Life' },
                     { file: 'img 3.jpg', captionAr: 'التكافل والتضامن بين أفراد المجتمع المحلي', captionEn: 'Community Solidarity & Grassroots Support Networks' },
@@ -2038,7 +2036,7 @@
                 date: '2024 - 2025',
                 folder: 'images/هذة الصور اضفها الى ركن  انساني  وركن المجتمعي',
                 images: [
-                    { file: 'img 1.jpg', captionAr: 'حوارات مجتمعية وتخطيط المبادرات التشاركية', captionEn: 'Community Dialogues & Participatory Action Planning' },
+                    { file: 'img 1.jpg', isHero: true, captionAr: 'حوارات مجتمعية وتخطيط المبادرات التشاركية', captionEn: 'Community Dialogues & Participatory Action Planning' },
                     { file: 'img 2.jpg', captionAr: 'طاقات الشباب تصنع الفارق الحقيقي على الأرض', captionEn: 'Youth Energies Driving Real Ground Impact' },
                     { file: 'img 3.jpg', captionAr: 'تمكين المرأة وريادة المبادرات المحلية', captionEn: 'Women Empowerment & Local Community Leadership' },
                     { file: 'img 4.jpg', captionAr: 'مشاريع التنمية المستدامة واستثمار الموارد', captionEn: 'Sustainable Development & Local Resource Stewardship' },
@@ -2060,7 +2058,7 @@
                 date: '2023 - 2025',
                 folder: 'images/هذة الصور اضفها الى ركن انساني و ركن المجتمعي و ركن وثائقي',
                 images: [
-                    { file: 'img 1.jpg', captionAr: 'سرد وثائقي للمكان وعبق الذاكرة الشعبية', captionEn: 'Documentary Storytelling of Place & Collective Memory' },
+                    { file: 'img 1.jpg', isHero: true, captionAr: 'سرد وثائقي للمكان وعبق الذاكرة الشعبية', captionEn: 'Documentary Storytelling of Place & Collective Memory' },
                     { file: 'img 2.jpg', captionAr: 'وجوه تحكي حكايات الصبر والأصالة', captionEn: 'Faces Telling Tales of Patience & Dignity' },
                     { file: 'img 3.jpg', captionAr: 'بورتريه وثائقي يجسد روح الإنسان في بيئته', captionEn: 'Documentary Portrait Reflecting Man & Environment' },
                     { file: 'img 4.jpg', captionAr: 'الرعاية الصحية المجتمعية وتحديات الاستجابة', captionEn: 'Community Healthcare & Everyday Care Challenges' },
@@ -2083,11 +2081,76 @@
                 date: '2024 - 2025',
                 folder: 'images/هذة الصور اضفها الى ركن ورش عمل و ركن المجتمعي',
                 images: [
-                    { file: 'img 1.jpg', captionAr: 'جلسات التدريب التفاعلي على مهارات التوثيق', captionEn: 'Interactive Training in Visual Documentation Skills' },
+                    { file: 'img 1.jpg', isHero: true, captionAr: 'جلسات التدريب التفاعلي على مهارات التوثيق', captionEn: 'Interactive Training in Visual Documentation Skills' },
                     { file: 'img 2.jpg', captionAr: 'تطبيقات ميدانية في التصوير وسرد القصص', captionEn: 'Hands-on Field Practice in Photo Storytelling' },
                     { file: 'img 3.jpg', captionAr: 'تحليل الصور ونقد أساليب المناصرة البصرية', captionEn: 'Visual Literacy & Advocacy Narrative Analysis' },
                     { file: 'img 4.jpg', captionAr: 'تمكين المشاركين من توظيف الكاميرا للتغيير', captionEn: 'Empowering Participants to Use the Lens for Positive Change' },
                     { file: 'img 5.jpg', captionAr: 'تخريج دفعات تروي قصص مجتمعاتها بأمانة', captionEn: 'Graduating Cohorts Ready to Document Their Communities' }
+                ]
+            },
+            {
+                id: 'series-humanitarian-coordination',
+                number: '05',
+                category: 'humanitarian',
+                tags: ['humanitarian', 'community', 'advocacy'],
+                titleAr: 'تنسيق العمل الإنساني والمساءلة المجتمعية | ورش الرصد الميداني',
+                titleEn: 'Humanitarian Coordination & Community Accountability | Field Workshops',
+                subtitleAr: 'توثيق لجلسات التنسيق الفني وبناء القدرات لآليات المساءلة أمام المتضررين (IA CFM AAP WG)، لترسيخ صوت المجتمع وضمان استجابة إنسانية عادلة وشفافة.',
+                subtitleEn: 'Documenting inter-agency field coordination and capacity-building workshops on Accountability to Affected Populations (IA CFM AAP WG), empowering community voices with dignity.',
+                locationAr: 'السودان — قاعات التنسيق الإنساني وبناء القدرات',
+                locationEn: 'Sudan — Inter-Agency Coordination & Field Capacity Halls',
+                date: '2025 - 2026',
+                folder: 'images/s5',
+                images: [
+                    {
+                        file: 'img1.jpg',
+                        url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img1.jpg',
+                        isHero: true,
+                        captionAr: 'حضور ميداني وإصغاء عميق في جلسات التنسيق الفني المشترك',
+                        captionEn: 'Frontline Focus & Deep Engagement in Technical Coordination'
+                    },
+                    {
+                        file: 'img2.jpg',
+                        url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img2.jpg',
+                        captionAr: 'تيسير النقاش الميداني وشرح آليات المساءلة المجتمعية (IA CFM AAP WG)',
+                        captionEn: 'Facilitating Community Accountability & Feedback Dialogues'
+                    },
+                    {
+                        file: 'img3.jpg',
+                        url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img3.jpg',
+                        captionAr: 'المشاركة النسائية الفاعلة في قيادة الاستجابة وتطوير السياسات',
+                        captionEn: 'Active Women Leadership in Humanitarian Response'
+                    },
+                    {
+                        file: 'img4.jpg',
+                        url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img4.jpg',
+                        captionAr: 'تكامل الرؤى بين الفرق الإنسانية ومنظمات المجتمع المدني',
+                        captionEn: 'Harmonizing Perspectives Across Humanitarian & Civic Teams'
+                    },
+                    {
+                        file: 'img5.jpg',
+                        url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img5.jpg',
+                        captionAr: 'استعراض النماذج الميدانية وخطط الرصد التشاركي للمستفيدين',
+                        captionEn: 'Reviewing Field Templates & Participatory Monitoring Plans'
+                    },
+                    {
+                        file: 'img6.jpg',
+                        url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img6.jpg',
+                        captionAr: 'شغف العطاء والتفاني في خدمة المجتمعات المتأثرة',
+                        captionEn: 'Dedication & Compassion in Serving Affected Communities'
+                    },
+                    {
+                        file: 'img7.jpg',
+                        url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img7.jpg',
+                        captionAr: 'تطوير أدوات الرصد وإيصال صوت المستفيدين بأمانة ومسؤولية',
+                        captionEn: 'Refining Monitoring Tools to Amplify Beneficiary Voices'
+                    },
+                    {
+                        file: 'img8.jpg',
+                        url: 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/%D8%B1%D9%83%D9%86%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%D9%8A%20%D9%88%D8%B1%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A/img8.jpg',
+                        captionAr: 'العمل التشاركي لصياغة مستقبل العمل الإنساني الشامل',
+                        captionEn: 'Collaborative Action Shaping the Future of Humanitarian Work'
+                    }
                 ]
             }
         ];
@@ -2102,23 +2165,44 @@
             'images/هذة الصور اضفها الى ركن انساني  وركن المجتمعي': 'images/s1',
             'images/هذة الصور اضفها الى ركن  انساني  وركن المجتمعي': 'images/s2',
             'images/هذة الصور اضفها الى ركن انساني و ركن المجتمعي و ركن وثائقي': 'images/s3',
-            'images/هذة الصور اضفها الى ركن ورش عمل و ركن المجتمعي': 'images/s4'
+            'images/هذة الصور اضفها الى ركن ورش عمل و ركن المجتمعي': 'images/s4',
+            'images/series-05-humanitarian-coordination': 'images/s5',
+            'images/series-05': 'images/s5',
+            'images/ركن انساني وركن المجتمعي': 'images/s5'
         };
 
         // Helper: Build image paths with primary local path and multi-tier robust fallback
         function getImagePaths(series, imgObj) {
-            const rawBase = 'https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/';
             const cleanBase = folderAliases[series.folder] || series.folder;
-            const fileEncoded = encodeURIComponent(imgObj.file);
-            const folderEncoded = encodeURIComponent(series.folder.replace('images/', ''));
+            const fileEncoded = encodeURIComponent(imgObj.file || '');
+            const folderClean = series.folder.replace('images/', '');
             const localSrc = `${cleanBase}/${fileEncoded}`;
-            const directLocalSrc = `images/${folderEncoded}/${fileEncoded}`;
-            const fallbackSrc = `${rawBase}images/${folderEncoded}/${fileEncoded}`;
-            const placeholderSrc = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop';
+            const directLocalSrc = `images/${encodeURIComponent(folderClean)}/${fileEncoded}`;
+            const fallbackSrc = imgObj.url || `https://raw.githubusercontent.com/hindawiii/enaam-portfolio/main/images/${encodeURIComponent(folderClean)}/${fileEncoded}`;
+            const isRTL = (typeof currentLang !== 'undefined' ? currentLang === 'ar' : true);
+            const safeTitle = (isRTL ? imgObj.captionAr : imgObj.captionEn) || series.titleAr || 'وثائقيات إنعام علي عثمان';
+            const placeholderSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#090d14"/><stop offset="50%" stop-color="#111926"/><stop offset="100%" stop-color="#070a0f"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><circle cx="600" cy="350" r="54" fill="none" stroke="#c9a86a" stroke-width="2" opacity="0.6"/><path d="M580 350 L600 330 L620 350 M600 335 L600 375" stroke="#c9a86a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><text x="600" y="440" font-family="Cairo, system-ui, sans-serif" font-size="24" font-weight="600" fill="#f8fafc" text-anchor="middle">${safeTitle.replace(/["<>]/g, '')}</text><text x="600" y="480" font-family="system-ui, sans-serif" font-size="14" letter-spacing="2" fill="#94a3b8" text-anchor="middle">ENAAM ALI OSMAN • HUMANITARIAN &amp; DOCUMENTARY ARCHIVE</text></svg>`;
+            const placeholderSrc = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(placeholderSvg)}`;
             return { localSrc, directLocalSrc, fallbackSrc, placeholderSrc };
         }
 
-        // Render Portfolio Series (Interactive Story Slider by default + Bento Grid Mode)
+        // Auto-sync with live CMS data from /api/series
+        async function syncLivePortfolioData() {
+            try {
+                const res = await fetch('/api/series');
+                const data = await res.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    photoSeriesData.length = 0;
+                    photoSeriesData.push(...data);
+                    renderPortfolio();
+                }
+            } catch (e) {
+                console.log('Serving initial curated photoSeriesData');
+            }
+        }
+        syncLivePortfolioData();
+
+        // Render Portfolio Series (Interactive Story Slider + Bento Grid Mode)
         function renderPortfolio() {
             const container = document.getElementById('seriesContainer');
             if (!container) return;
@@ -2139,17 +2223,63 @@
                 }).join('');
 
                 const card = document.createElement('article');
-                card.className = 'series-card reveal';
+                card.className = 'series-card active';
                 card.dataset.seriesId = series.id;
                 card.dataset.tags = series.tags.join(' ');
+                card.style.opacity = '1';
+                card.style.transform = 'none';
 
                 // Check filter visibility
                 if (currentFilter !== 'all' && !series.tags.includes(currentFilter)) {
                     card.classList.add('hidden');
                 }
 
-                if (currentViewMode === 'slider') {
-                    // SLIDER MODE (Screenshot presentation with mobile arrow solution & touch swipe)
+                const hasExplicitHero = series.images.some(m => m.isHero === true);
+
+                if (currentViewMode === 'grid') {
+                    // BENTO GRID MODE
+                    card.innerHTML = `
+                        <div class="series-header">
+                            <div class="series-meta">
+                                <span class="series-number">SERIES ${series.number}</span>
+                                <div class="series-tags">${tagsHtml}</div>
+                            </div>
+                            <h3 class="series-title">${title}</h3>
+                            <p class="series-desc">${subtitle}</p>
+                            <div class="series-info-bar">
+                                <span class="info-item"><i class="fas fa-map-marker-alt"></i> <span>${location}</span></span>
+                                <span class="info-item"><i class="fas fa-calendar-alt"></i> <span>${series.date}</span></span>
+                                <span class="info-item"><i class="fas fa-camera"></i> <span>${countText}</span></span>
+                            </div>
+                        </div>
+                        <div class="series-grid-view">
+                            ${series.images.map((img, i) => {
+                                const { localSrc, directLocalSrc, fallbackSrc, placeholderSrc } = getImagePaths(series, img);
+                                const caption = isRTL ? img.captionAr : img.captionEn;
+                                const isHero = img.isHero === true || (!hasExplicitHero && i === 0);
+                                const mosaicClass = mosaicClasses[i % mosaicClasses.length];
+                                const heroBadge = isHero ? `<div class="hero-photo-watermark" title="Hero Photo"><i class="fas fa-crown"></i></div>` : '';
+                                return `
+                                    <div class="grid-photo-card ${mosaicClass} img-skeleton-holder" data-photo-index="${i}">
+                                        ${heroBadge}
+                                        <img src="${localSrc}" alt="${caption}" loading="lazy" onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded');" onerror="if(this.src!=='${directLocalSrc}'){this.src='${directLocalSrc}';}else if(this.src!=='${fallbackSrc}'){this.src='${fallbackSrc}';}else{this.src='${placeholderSrc}';}">
+                                        <div class="grid-card-overlay">
+                                            <span class="grid-card-caption">${caption}</span>
+                                            <span class="grid-card-zoom"><i class="fas fa-expand"></i></span>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    `;
+                    card.querySelectorAll('.grid-photo-card').forEach((el) => {
+                        el.addEventListener('click', () => {
+                            const idx = parseInt(el.dataset.photoIndex, 10);
+                            proLightboxStudio.open(series.id, idx);
+                        });
+                    });
+                } else {
+                    // SLIDER MODE (Exclusive pristine cinematic presentation)
                     card.innerHTML = `
                         <div class="series-header">
                             <div class="series-meta">
@@ -2171,7 +2301,8 @@
                                         ${series.images.map((img, i) => {
                                             const { localSrc, directLocalSrc, fallbackSrc, placeholderSrc } = getImagePaths(series, img);
                                             const caption = isRTL ? img.captionAr : img.captionEn;
-                                            const heroBadge = (i === 0) ? `<div class="hero-photo-watermark"><i class="fas fa-crown"></i> <span>${translations[currentLang].hero_photo_label}</span></div>` : '';
+                                            const isHero = img.isHero === true || (!hasExplicitHero && i === 0);
+                                            const heroBadge = isHero ? `<div class="hero-photo-watermark" title="Hero Photo"><i class="fas fa-crown"></i></div>` : '';
                                             return `
                                                 <div class="slider-slide img-skeleton-holder" data-slide-index="${i}">
                                                     <div class="slide-ambient-bg" style="background-image: url('${localSrc}');"></div>
@@ -2234,55 +2365,10 @@
                             </div>
                         </div>
                     `;
-
-                    container.appendChild(card);
                     initSlider(series);
-                } else {
-                    // BENTO GRID MODE
-                    card.innerHTML = `
-                        <div class="series-header">
-                            <div class="series-meta">
-                                <span class="series-number">SERIES ${series.number}</span>
-                                <div class="series-tags">${tagsHtml}</div>
-                            </div>
-                            <h3 class="series-title">${title}</h3>
-                            <p class="series-desc">${subtitle}</p>
-                            <div class="series-info-bar">
-                                <span class="info-item"><i class="fas fa-map-marker-alt"></i> <span>${location}</span></span>
-                                <span class="info-item"><i class="fas fa-calendar-alt"></i> <span>${series.date}</span></span>
-                                <span class="info-item"><i class="fas fa-camera"></i> <span>${countText}</span></span>
-                            </div>
-                        </div>
-                        <div class="series-grid-view">
-                            ${series.images.map((img, i) => {
-                                const { localSrc, directLocalSrc, fallbackSrc, placeholderSrc } = getImagePaths(series, img);
-                                const caption = isRTL ? img.captionAr : img.captionEn;
-                                const mClass = mosaicClasses[i % mosaicClasses.length];
-                                const heroBadgeHtml = (i === 0) ? `<div class="grid-photo-hero-badge"><i class="fas fa-crown"></i> <span>${translations[currentLang].hero_photo_label}</span></div>` : '';
-                                return `
-                                    <div class="grid-photo-card ${mClass} img-skeleton-holder" data-series-id="${series.id}" data-photo-index="${i}">
-                                        ${heroBadgeHtml}
-                                        <img src="${localSrc}" alt="${caption}" loading="${i < 2 ? 'eager' : 'lazy'}" onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded');" onerror="if(this.src!=='${directLocalSrc}'){this.src='${directLocalSrc}';}else if(this.src!=='${fallbackSrc}'){this.src='${fallbackSrc}';}else{this.src='${placeholderSrc}';}">
-                                        <div class="grid-photo-overlay">
-                                            <span class="grid-photo-badge">#${String(i + 1).padStart(2, '0')} · ${title}</span>
-                                            <p>${caption}</p>
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                    `;
-
-                    container.appendChild(card);
-
-                    // Wire grid card clicks to launch Pro Lightbox Studio
-                    card.querySelectorAll('.grid-photo-card').forEach(item => {
-                        item.addEventListener('click', () => {
-                            const pIdx = parseInt(item.dataset.photoIndex, 10);
-                            proLightboxStudio.open(series.id, pIdx);
-                        });
-                    });
                 }
+
+                container.appendChild(card);
             });
 
             // Re-observe reveal elements
@@ -2394,7 +2480,7 @@
                 });
             }
 
-            // Touch / Mouse Drag Support
+            // Unified Pointer Drag & Touch Flick Handler (Zero double-triggering, natural mobile UX)
             let startX = 0;
             let currentX = 0;
             let isDragging = false;
@@ -2412,49 +2498,24 @@
                     currentX = e.clientX;
                 });
 
-                window.addEventListener('pointerup', () => {
+                const endDrag = () => {
                     if (!isDragging) return;
                     isDragging = false;
                     wrapper.classList.remove('grabbing');
                     const diff = currentX - startX;
-                    const isRTL = (currentLang === 'ar');
                     if (Math.abs(diff) > 40) {
-                        if (diff > 0) {
-                            // Swiped right
-                            isRTL ? next() : prev();
+                        if (diff < 0) {
+                            // Swiped leftwards -> advance to next photo
+                            next();
                         } else {
-                            // Swiped left
-                            isRTL ? prev() : next();
+                            // Swiped rightwards -> return to previous photo
+                            prev();
                         }
                     }
-                });
+                };
 
-                window.addEventListener('pointercancel', () => {
-                    isDragging = false;
-                    wrapper.classList.remove('grabbing');
-                });
-
-                // Dedicated native touch listener for smooth mobile flicking
-                let touchStartX = 0;
-                let touchEndX = 0;
-                wrapper.addEventListener('touchstart', (e) => {
-                    touchStartX = e.touches[0].clientX;
-                    touchEndX = touchStartX;
-                }, { passive: true });
-                wrapper.addEventListener('touchmove', (e) => {
-                    touchEndX = e.touches[0].clientX;
-                }, { passive: true });
-                wrapper.addEventListener('touchend', () => {
-                    const diff = touchEndX - touchStartX;
-                    const isRTL = (currentLang === 'ar');
-                    if (Math.abs(diff) > 40) {
-                        if (diff > 0) {
-                            isRTL ? next() : prev();
-                        } else {
-                            isRTL ? prev() : next();
-                        }
-                    }
-                });
+                window.addEventListener('pointerup', endDrag);
+                window.addEventListener('pointercancel', endDrag);
             }
 
             // Store controller for external access
@@ -2511,12 +2572,11 @@
                     }, { passive: true });
                     this.modal.addEventListener('touchend', () => {
                         const diff = touchEndX - touchStartX;
-                        const isRTL = (currentLang === 'ar');
                         if (Math.abs(diff) > 40) {
-                            if (diff > 0) {
-                                isRTL ? this.next() : this.prev();
+                            if (diff < 0) {
+                                this.next();
                             } else {
-                                isRTL ? this.prev() : this.next();
+                                this.prev();
                             }
                         }
                     });
@@ -2640,9 +2700,16 @@
         proLightboxStudio.init();
         applyLanguage(currentLang);
 
-        window.addEventListener('load', () => {
-            setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 2000);
-        });
+        function dismissLoader() {
+            const loaderEl = document.getElementById('loader');
+            if (loaderEl) loaderEl.classList.add('hidden');
+        }
+        if (document.readyState === 'complete') {
+            dismissLoader();
+        } else {
+            window.addEventListener('DOMContentLoaded', dismissLoader);
+            window.addEventListener('load', dismissLoader);
+        }
 
         const cursor = document.getElementById('cursor');
         let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
