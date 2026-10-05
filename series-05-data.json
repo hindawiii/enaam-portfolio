@@ -1,0 +1,72 @@
+{
+  "id": "series-humanitarian-coordination",
+  "number": "05",
+  "category": "humanitarian",
+  "tags": ["humanitarian", "community", "advocacy"],
+  "titleAr": "تنسيق العمل الإنساني والمساعلة المجتمعية | ورش الرصد الميداني",
+  "titleEn": "Humanitarian Coordination & Community Accountability | Field Workshops",
+  "subtitleAr": "توثيق التنسيق الميداني بين المنظمات الإنسانية وورش العمل التدريبية على المساعلة للسكان المتضررين",
+  "subtitleEn": "Documenting inter-agency field coordination and capacity-building workshops on Accountability to Affected Populations (IAA CFM AAP WG), empowering community voices with dignity",
+  "locationAr": "السودان — قاعات التنسيق الإنساني والتدريبات الميدانية",
+  "locationEn": "Sudan — Inter-Agency Coordination & Field Capacity Halls",
+  "date": "2025 - 2026",
+  "folder": "images/s5",
+  "images": [
+    {
+      "file": "img1.jpg",
+      "url": "/images/s5/img1.jpg",
+      "isHero": true,
+      "captionAr": "جلسة التنسيق الإنساني الأولى",
+      "captionEn": "First Humanitarian Coordination Session"
+    },
+    {
+      "file": "img2.jpg",
+      "url": "/images/s5/img2.jpg",
+      "isHero": false,
+      "captionAr": "ورشة العمل التدريبية الثانية",
+      "captionEn": "Second Training Workshop"
+    },
+    {
+      "file": "img3.jpg",
+      "url": "/images/s5/img3.jpg",
+      "isHero": false,
+      "captionAr": "المجموعات النقاشية المجتمعية",
+      "captionEn": "Community Discussion Groups"
+    },
+    {
+      "file": "img4.jpg",
+      "url": "/images/s5/img4.jpg",
+      "isHero": false,
+      "captionAr": "جلسة الاستماع إلى الأصوات المحلية",
+      "captionEn": "Community Voice Listening Session"
+    },
+    {
+      "file": "img5.jpg",
+      "url": "/images/s5/img5.jpg",
+      "isHero": false,
+      "captionAr": "ورشة المساعلة والمسؤولية",
+      "captionEn": "Accountability and Responsibility Workshop"
+    },
+    {
+      "file": "img6.jpg",
+      "url": "/images/s5/img6.jpg",
+      "isHero": false,
+      "captionAr": "جلسة بناء القدرات الميدانية",
+      "captionEn": "Field Capacity Building Session"
+    },
+    {
+      "file": "img7.jpg",
+      "url": "/images/s5/img7.jpg",
+      "isHero": false,
+      "captionAr": "التوثيق والشهادات المجتمعية",
+      "captionEn": "Documentation and Community Testimonies"
+    },
+    {
+      "file": "img8.jpg",
+      "url": "/images/s5/img8.jpg",
+      "isHero": false,
+      "captionAr": "ختام ورش العمل والالتزام المستمر",
+      "captionEn": "Workshop Closure and Ongoing Commitment"
+    }
+  ]
+}
